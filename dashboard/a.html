@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" >
+  <head>
+    <meta charset="utf-8">
+    <title>Panel</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.holoviz.org/panel/1.4.4/dist/images/apple-touch-icon.png">
+ <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.holoviz.org/panel/1.4.4/dist/images/favicon.ico">     <style>
+      html, body {
+	display: flow-root;
+        box-sizing: border-box;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <link rel="stylesheet" href="https://cdn.holoviz.org/panel/1.4.4/dist/bundled/deckglplot/mapbox-gl-js/v3.0.1/mapbox-gl.css?v=1.4.4" type="text/css" />
+<script type="text/javascript" src="https://cdn.holoviz.org/panel/1.4.4/dist/bundled/deckglplot/h3-js@3.7.2/dist/h3-js.umd.js"></script>
+<script type="text/javascript" src="https://cdn.holoviz.org/panel/1.4.4/dist/bundled/deckglplot/deck.gl@8.6.7/dist.min.js"></script>
+<script type="text/javascript" src="https://cdn.holoviz.org/panel/1.4.4/dist/bundled/deckglplot/@deck.gl/json@8.6.7/dist.min.js"></script>
+<script type="text/javascript" src="https://cdn.holoviz.org/panel/1.4.4/dist/bundled/deckglplot/@loaders.gl/csv@3.1.7/dist/dist.min.js"></script>
+<script type="text/javascript" src="https://cdn.holoviz.org/panel/1.4.4/dist/bundled/deckglplot/@loaders.gl/json@3.1.7/dist/dist.min.js"></script>
+<script type="text/javascript" src="https://cdn.holoviz.org/panel/1.4.4/dist/bundled/deckglplot/@loaders.gl/3d-tiles@3.1.7/dist/dist.min.js"></script>
+<script type="text/javascript" src="https://cdn.holoviz.org/panel/1.4.4/dist/bundled/deckglplot/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
+<script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-3.4.1.min.js"></script>
+<script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-gl-3.4.1.min.js"></script>
+<script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-widgets-3.4.1.min.js"></script>
+<script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-tables-3.4.1.min.js"></script>
+<script type="text/javascript" src="https://cdn.holoviz.org/panel/1.4.4/dist/panel.min.js"></script>
+
+<script type="text/javascript">
+  Bokeh.set_log_level("info");
+</script>  </head>
+  <body>
+    <div id="a4130dbf-169b-4af1-8e68-09e79e8e11cc" data-root-id="p1056" style="display: contents;"></div>
+  
+    <script type="application/json" id="baae2688-aa44-4629-8d5a-5390eb70194d">
+      {"31dca398-4a77-4b37-b72e-f63ba0b5ec72":{"version":"3.4.1","title":"Bokeh Application","roots":[{"type":"object","name":"panel.models.deckgl.DeckGLPlot","id":"p1056","attributes":{"stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 400px));\n  -webkit-mask-size: auto calc(min(50%, 400px));\n}",{"type":"object","name":"ImportedStyleSheet","id":"p1055","attributes":{"url":"https://cdn.holoviz.org/panel/1.4.4/dist/css/loading.css"}},{"type":"object","name":"ImportedStyleSheet","id":"p1054","attributes":{"url":"static/extensions/panel/bundled/deckglplot/mapbox-gl-js/v3.0.1/mapbox-gl.css"}},{"type":"object","name":"ImportedStyleSheet","id":"p1052","attributes":{"url":"https://cdn.holoviz.org/panel/1.4.4/dist/bundled/theme/default.css"}},{"type":"object","name":"ImportedStyleSheet","id":"p1053","attributes":{"url":"https://cdn.holoviz.org/panel/1.4.4/dist/bundled/theme/native.css"}}],"height":600,"margin":[5,10],"sizing_mode":"stretch_width","align":"start","data":{"type":"map","entries":[["views",[{"type":"map","entries":[["@@type","MapView"],["controller",true]]}]],["mapProvider","carto"],["tooltip",true],["mapStyle","https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json"]]},"initialViewState":{"type":"map","entries":[["longitude",-123.13],["latitude",49.254],["zoom",11],["pitch",45],["bearing",0],["maxZoom",16]]},"layers":[{"type":"map","entries":[["@@type","PolygonLayer"],["id","9d34f23b-32ad-4e85-a01a-4884cd319930"],["stroked",false],["kwargs",{"type":"map","entries":[["stroked",false],["getPolygon","-"],["getFillColor",[0,0,0,20]]]}],["getPolygon","@@=-"],["getFillColor",[0,0,0,20]],["data",[[[-123.0,49.196],[-123.0,49.324],[-123.306,49.324],[-123.306,49.196]]]],["useBinaryTransport",null],["binaryData",null]]},{"type":"map","entries":[["@@type","GeoJsonLayer"],["id","e5055481-7ce2-4a28-986d-9316c1524ea7"],["opacity",0.8],["stroked",false],["filled",true],["extruded",true],["wireframe",true],["pickable",true],["kwargs",{"type":"map","entries":[["opacity",0.8],["stroked",false],["filled",true],["extruded",true],["wireframe",true],["pickable",true],["getElevation","properties.valuePerSqm / 20"],["getFillColor","[255, 255, properties.growth * 255]"],["getLineColor",[255,255,255]]]}],["getElevation","@@=properties.valuePerSqm / 20"],["getFillColor","@@=[255, 255, properties.growth * 255]"],["getLineColor",[255,255,255]],["data","https://raw.githubusercontent.com/uber-common/deck.gl-data/master/examples/geojson/vancouver-blocks.json"],["useBinaryTransport",null],["binaryData",null]]}],"tooltip":{"type":"map","entries":[["e5055481-7ce2-4a28-986d-9316c1524ea7",{"type":"map","entries":[["html","\n              &lt;b&gt;Value per Square meter:&lt;/b&gt; {properties.valuePerSqm}&lt;br&gt;\n              &lt;b&gt;Growth:&lt;/b&gt; {properties.growth}\n            "],["style",{"type":"map","entries":[["backgroundColor","steelblue"],["color","white"]]}]]}]]},"throttle":{"type":"map","entries":[["view",200],["hover",200]]}}}],"defs":[{"type":"model","name":"ReactiveHTML1"},{"type":"model","name":"FlexBox1","properties":[{"name":"align_content","kind":"Any","default":"flex-start"},{"name":"align_items","kind":"Any","default":"flex-start"},{"name":"flex_direction","kind":"Any","default":"row"},{"name":"flex_wrap","kind":"Any","default":"wrap"},{"name":"gap","kind":"Any","default":""},{"name":"justify_content","kind":"Any","default":"flex-start"}]},{"type":"model","name":"FloatPanel1","properties":[{"name":"config","kind":"Any","default":{"type":"map"}},{"name":"contained","kind":"Any","default":true},{"name":"position","kind":"Any","default":"right-top"},{"name":"offsetx","kind":"Any","default":null},{"name":"offsety","kind":"Any","default":null},{"name":"theme","kind":"Any","default":"primary"},{"name":"status","kind":"Any","default":"normalized"}]},{"type":"model","name":"GridStack1","properties":[{"name":"mode","kind":"Any","default":"warn"},{"name":"ncols","kind":"Any","default":null},{"name":"nrows","kind":"Any","default":null},{"name":"allow_resize","kind":"Any","default":true},{"name":"allow_drag","kind":"Any","default":true},{"name":"state","kind":"Any","default":[]}]},{"type":"model","name":"drag1","properties":[{"name":"slider_width","kind":"Any","default":5},{"name":"slider_color","kind":"Any","default":"black"},{"name":"value","kind":"Any","default":50}]},{"type":"model","name":"click1","properties":[{"name":"terminal_output","kind":"Any","default":""},{"name":"debug_name","kind":"Any","default":""},{"name":"clears","kind":"Any","default":0}]},{"type":"model","name":"FastWrapper1","properties":[{"name":"object","kind":"Any","default":null},{"name":"style","kind":"Any","default":null}]},{"type":"model","name":"NotificationAreaBase1","properties":[{"name":"js_events","kind":"Any","default":{"type":"map"}},{"name":"position","kind":"Any","default":"bottom-right"},{"name":"_clear","kind":"Any","default":0}]},{"type":"model","name":"NotificationArea1","properties":[{"name":"js_events","kind":"Any","default":{"type":"map"}},{"name":"notifications","kind":"Any","default":[]},{"name":"position","kind":"Any","default":"bottom-right"},{"name":"_clear","kind":"Any","default":0},{"name":"types","kind":"Any","default":[{"type":"map","entries":[["type","warning"],["background","#ffc107"],["icon",{"type":"map","entries":[["className","fas fa-exclamation-triangle"],["tagName","i"],["color","white"]]}]]},{"type":"map","entries":[["type","info"],["background","#007bff"],["icon",{"type":"map","entries":[["className","fas fa-info-circle"],["tagName","i"],["color","white"]]}]]}]}]},{"type":"model","name":"Notification","properties":[{"name":"background","kind":"Any","default":null},{"name":"duration","kind":"Any","default":3000},{"name":"icon","kind":"Any","default":null},{"name":"message","kind":"Any","default":""},{"name":"notification_type","kind":"Any","default":null},{"name":"_destroyed","kind":"Any","default":false}]},{"type":"model","name":"TemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"BootstrapTemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"TemplateEditor1","properties":[{"name":"layout","kind":"Any","default":[]}]},{"type":"model","name":"MaterialTemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"copy_to_clipboard1","properties":[{"name":"fill","kind":"Any","default":"none"},{"name":"value","kind":"Any","default":null}]}]}}
+    </script>
+    <script type="text/javascript">
+      (function() {
+        const fn = function() {
+          Bokeh.safely(function() {
+            (function(root) {
+              function embed_document(root) {
+              const docs_json = document.getElementById('baae2688-aa44-4629-8d5a-5390eb70194d').textContent;
+              const render_items = [{"docid":"31dca398-4a77-4b37-b72e-f63ba0b5ec72","roots":{"p1056":"a4130dbf-169b-4af1-8e68-09e79e8e11cc"},"root_ids":["p1056"]}];
+              root.Bokeh.embed.embed_items(docs_json, render_items);
+              }
+              if (root.Bokeh !== undefined) {
+                embed_document(root);
+              } else {
+                let attempts = 0;
+                const timer = setInterval(function(root) {
+                  if (root.Bokeh !== undefined) {
+                    clearInterval(timer);
+                    embed_document(root);
+                  } else {
+                    attempts++;
+                    if (attempts > 100) {
+                      clearInterval(timer);
+                      console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+                    }
+                  }
+                }, 10, root)
+              }
+            })(window);
+          });
+        };
+        if (document.readyState != "loading") fn();
+        else document.addEventListener("DOMContentLoaded", fn);
+      })();
+    </script>
+  </body>
+</html>
