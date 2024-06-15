@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import pydeck as pdk
 import panel as pn
+import streamlit.components.v1 as components
 
 st.set_page_config(
     page_title="Retail Spatial Analysis",
@@ -103,7 +104,7 @@ with st.container():
         with open(path_to_html,'r') as f: 
             html_data = f.read()
         
-        st.components.v1.html(html_data, scrolling=True, height=500)
+        components.html(html_data, scrolling=True, height=500)
         
 
 with st.sidebar:
