@@ -3,7 +3,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
+  <a href="https://img.icons8.com/?size=100&id=ISvzi43_6Fxs&format=png&color=000000">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
