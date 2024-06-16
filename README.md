@@ -59,7 +59,7 @@ Syachrul Qolbi Nur Septi
 
 Project Link: https://retail-spatial-analysis.streamlit.app/
 
-[![LinkedIn][linkedin-shield]][linkedin-url]
+[![LinkedIn][linkedin-shield]][linkedin-url] [![Gmail][gmail-shield]][gmail-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
