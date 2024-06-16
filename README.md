@@ -36,20 +36,18 @@
 
 This project focuses on the spatial analysis of retail stores to optimize store locations, understand customer behavior, and enhance business decision-making. We use various spatial analysis techniques and tools to analyze retail data and generate actionable insights.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 <!-- PREREQUISITES -->
 ## Prerequisites
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 
 <!-- CONTACT -->
@@ -61,11 +59,10 @@ Project Link: https://retail-spatial-analysis.streamlit.app/
 
 [![LinkedIn][linkedin-shield]][linkedin-url] [![Gmail][gmail-shield]][gmail-url]
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/syachrulqolbi/
 [gmail-shield]: https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white
