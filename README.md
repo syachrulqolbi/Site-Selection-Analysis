@@ -4,7 +4,7 @@
 <br />
 <div align="center">
   <a href="https://img.icons8.com/?size=100&id=ISvzi43_6Fxs&format=png&color=000000">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="https://img.icons8.com/?size=100&id=ISvzi43_6Fxs&format=png&color=000000" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Best-README-Template</h3>
