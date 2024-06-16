@@ -4,7 +4,7 @@
 <br />
 <div align="center">
   <a href="#">
-    <img src="https://img.icons8.com/?size=100&id=ISvzi43_6Fxs&format=png&color=000000" alt="Logo" width="80" height="80">
+    <img src="https://img.icons8.com/?size=100&id=gD6jY1ZThEJD&format=png&color=000000" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Retail Spatial Analysis</h3>
