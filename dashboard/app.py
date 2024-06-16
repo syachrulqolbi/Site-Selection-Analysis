@@ -5,11 +5,35 @@ import pydeck as pdk
 import panel as pn
 import streamlit.components.v1 as components
 
+img_url = "https://img.icons8.com/?size=100&id=gD6jY1ZThEJD&format=png&color=000000"
+
 st.set_page_config(
     page_title="Retail Spatial Analysis",
-    #page_icon="0xF0 0x9F 0x8F 0xAC",
+    page_icon=img_url,
     layout="wide",
     initial_sidebar_state="expanded")
+
+with st.sidebar:
+    st.markdown("<img src={} width='150' style='display: block; margin: 0 auto;'>".format(img_url), unsafe_allow_html=True)
+    st.header("Filters")
+    with st.container():
+        option = st.selectbox(label = "Filter 1",
+                              options = ('Email', 'Home phone', 'Mobile phone'), 
+                              index = None,
+                              placeholder="Filter 1",
+                              key="filter_1")
+    with st.container():
+        option = st.selectbox(label = "Filter 2",
+                              options = ('Email', 'Home phone', 'Mobile phone'), 
+                              index = None,
+                              placeholder="Filter 2",
+                              key="filter_2")
+    with st.container():
+        option = st.selectbox(label = "Filter 3",
+                              options = ('Email', 'Home phone', 'Mobile phone'), 
+                              index = None,
+                              placeholder="Filter 3",
+                              key="filter_3")
 
 with st.container():
     st.markdown("<h1 style='text-align: center;'>Retail Spatial Analysis</h1>", unsafe_allow_html=True)
@@ -17,7 +41,7 @@ with st.container():
 st.divider()
 
 with st.container():
-    col1, col2, col3, col4, col5 = st.columns(5)
+    col1, col2, col3, col4 = st.columns([1, 1, 1, 2])
     with col1:
         option = st.selectbox(label = "",
                               options = ('Email', 'Home phone', 'Mobile phone'), 
@@ -36,7 +60,7 @@ with st.container():
                               index = None,
                               placeholder="District 3",
                               key="district_3")
-    with col5:
+    with col4:
         st.text_input(label = "", 
                       placeholder = "Search...")
     
@@ -97,35 +121,36 @@ with st.container():
 
         tooltips = {geojson.id: geojson_tooltip}
 
-        r1 = pn.pane.DeckGL(r, sizing_mode='stretch_width', tooltips=tooltips, height=600)
-        r1.save("map.html")
-        path_to_html = "./map.html" 
+        path_to_html = "./map.html"
+        r1 = pn.pane.DeckGL(r, sizing_mode='stretch_width', tooltips=tooltips, height=800)
+        r1.save(path_to_html)
+         
 
         with open(path_to_html,'r') as f: 
             html_data = f.read()
         
-        components.html(html_data, scrolling=True, height=500)
+        components.html(html_data, scrolling=False, height=800)
         
-
-with st.sidebar:
-    st.header("Filters")
-    with st.container():
-        option = st.selectbox(label = "Filter 1",
-                              options = ('Email', 'Home phone', 'Mobile phone'), 
-                              index = None,
-                              placeholder="Filter 1",
-                              key="filter_1")
-    with st.container():
-        option = st.selectbox(label = "Filter 2",
-                              options = ('Email', 'Home phone', 'Mobile phone'), 
-                              index = None,
-                              placeholder="Filter 2",
-                              key="filter_2")
-    with st.container():
-        option = st.selectbox(label = "Filter 3",
-                              options = ('Email', 'Home phone', 'Mobile phone'), 
-                              index = None,
-                              placeholder="Filter 3",
-                              key="filter_3")
-    
-    
+with st.container():
+    col1, _, col2 = st.columns([2, 1, 1])
+    with col1:
+        st.header("About")
+        st.markdown("<p>Retail Spatial Analysis is revolutionizing location intelligence, business analytics, mapping, and geo-fencing markets in Sydney, Australia</p>", unsafe_allow_html=True)
+        
+    with col2:
+        st.header("Contact Info")
+        st.markdown("<p style='margin-top: 0px;'><strong>Syachrul Qolbi Nur Septi</strong></p>", unsafe_allow_html=True)
+        st.markdown("<p style='margin-top: -20px;'>Data Scientist</p>", unsafe_allow_html=True)
+        st.markdown("""
+        <div>
+        <a href='https://mail.google.com/mail/u/0/?to=syachrulqolbinursepti@gmail.com&fs=1&tf=cm'>
+        <img src='https://img.icons8.com/?size=100&id=OVhNF7HVOQGe&format=png&color=000000' width='40'>
+        </a>
+        <a href='https://www.linkedin.com/in/syachrulqolbi/'>
+        <img src='https://img.icons8.com/?size=100&id=13930&format=png&color=000000' width='40'>
+        </a>
+        <a href='https://www.instagram.com/syahrulqolbi/'>
+        <img src='https://img.icons8.com/?size=100&id=32323&format=png&color=000000' width='40'>
+        </a>
+        </div?""", unsafe_allow_html=True)
+        
