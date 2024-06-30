@@ -4,11 +4,26 @@ import numpy as np
 import pydeck as pdk
 import panel as pn
 import streamlit.components.v1 as components
+import geohashlite
+import json
+import math
+import os
+from supabase import create_client, Client
+
+os.environ["SUPABASE_URL"] = "https://uukvdqiqgagwvzvqkoaw.supabase.co"
+os.environ["SUPABASE_KEY"] = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV1a3ZkcWlxZ2Fnd3Z6dnFrb2F3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTg1MDE1NzgsImV4cCI6MjAzNDA3NzU3OH0.CMFtfu5KdlCYaq8_si0khmKap0ydcDTIE_m_bTfhoak"
+os.environ["SUPABASE_KEY_MASTER"] = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV1a3ZkcWlxZ2Fnd3Z6dnFrb2F3Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTcxODUwMTU3OCwiZXhwIjoyMDM0MDc3NTc4fQ.hDba_swUBO5mfoqFZkzL1MNDdKCKXDZ2oiKGCL_EhZM"
+
+supabase: Client = create_client(os.environ.get("SUPABASE_URL"), 
+                                 #os.environ.get("SUPABASE_KEY"),
+                                 os.environ.get("SUPABASE_KEY_MASTER"),)
+
+url = os.getcwd()
 
 img_url = "https://img.icons8.com/?size=100&id=gD6jY1ZThEJD&format=png&color=000000"
 
 st.set_page_config(
-    page_title="Retail Spatial Analysis",
+    page_title="Site Selection Analysis",
     page_icon=img_url,
     layout="wide",
     initial_sidebar_state="expanded")
@@ -36,7 +51,7 @@ with st.sidebar:
                               key="filter_3")
 
 with st.container():
-    st.markdown("<h1 style='text-align: center;'>Retail Spatial Analysis</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center;'>Site Selection Analysis</h1>", unsafe_allow_html=True)
 
 st.divider()
 
@@ -65,11 +80,6 @@ with st.container():
                       placeholder = "Search...")
     
     with st.container():
-        DATA_URL = "https://raw.githubusercontent.com/uber-common/deck.gl-data/master/examples/geojson/vancouver-blocks.json"
-
-        #LAND_COVER = [[[-123.0, 49.196], [-123.0, 49.324], [-123.306, 49.324], [-123.306, 49.196]]]
-        #LAND_COVER = [(np.random.randn(10, 2) / [50, 50] + [-33, 151]).tolist()]
-
         INITIAL_VIEW_STATE = pdk.ViewState(
           latitude=-33.891,
           longitude=151.198,
@@ -78,51 +88,66 @@ with st.container():
           pitch=0,
           bearing=0
         )
+        
+        df_poi = pd.DataFrame(data = supabase.table("list_poi_sydney").select("*").execute().data)
+        df_poi["weight"] = 1
+        
+        converter = geohashlite.GeoJsonHasher()
+        df = pd.DataFrame(data = supabase.table("list_geohash_sydney").select("*").execute().data)
+        converter.geohash_codes = df["geohash"].values.tolist()
+        converter.decode_geohash(multipolygon=False)
+        with open('data.json', 'w') as filepath:
+            json.dump(converter.geojson, filepath)
+        data = json.load(open('data.json'))
+        
+        COLOR_BREWER_BLUE_SCALE = [
+            [240, 249, 232],
+            [204, 235, 197],
+            [168, 221, 181],
+            [123, 204, 196],
+            [67, 162, 202],
+            [8, 104, 172],
+        ]
 
-        polygon = pdk.Layer(
-            'PolygonLayer',
-            #LAND_COVER,
-            stroked=False,
-            # processes the data as a flat longitude-latitude pair
-            get_polygon='-',
-            get_fill_color=[0, 0, 0, 20]
+        poi_layer = pdk.Layer(
+            "HeatmapLayer",
+            data=df_poi,
+            opacity=0.5,
+            get_position=["lon", "lat"],
+            aggregation=pdk.types.String("SUM"),
+            #color_range=COLOR_BREWER_BLUE_SCALE,
+            threshold=0.1,
+            get_weight="weight",
+            pickable=True,
         )
-
-        geojson = pdk.Layer(
+        
+        polygon_layer = pdk.Layer(
             'GeoJsonLayer',
-            DATA_URL,
-            opacity=0.8,
+            #polygon_geo,
+            data,
+            opacity=0.1,
             stroked=False,
             filled=True,
             extruded=True,
             wireframe=True,
-            get_elevation='properties.valuePerSqm / 20',
-            get_fill_color='[255, 255, properties.growth * 255]',
+            #get_elevation='properties.valuePerSqm / 20',
+            get_elevation='0',
+            get_fill_color='[255, 255, 255]',
             get_line_color=[255, 255, 255],
             pickable=True
         )
-
+        
+        tooltip = {"html": "<b>Weight:</b> {properties.geohash}"}
+        
         r = pdk.Deck(
-            layers=[polygon, geojson],
+            layers=[poi_layer, polygon_layer],
             map_style="https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json",
-            initial_view_state=INITIAL_VIEW_STATE
+            initial_view_state=INITIAL_VIEW_STATE,
+            tooltip=tooltip
         )
         
-        geojson_tooltip = {
-            "html": """
-              <b>Value per Square meter:</b> {properties.valuePerSqm}<br>
-              <b>Growth:</b> {properties.growth}
-            """,
-            "style": {
-                "backgroundColor": "steelblue",
-                "color": "white"
-            }
-        }
-
-        tooltips = {geojson.id: geojson_tooltip}
-
         path_to_html = "./map.html"
-        r1 = pn.pane.DeckGL(r, sizing_mode='stretch_width', tooltips=tooltips, height=800)
+        r1 = pn.pane.DeckGL(r, sizing_mode='stretch_width', height=800)
         r1.save(path_to_html)
          
 
@@ -135,7 +160,7 @@ with st.container():
     col1, _, col2 = st.columns([2, 1, 1])
     with col1:
         st.header("About")
-        st.markdown("<p>Retail Spatial Analysis is revolutionizing location intelligence, business analytics, mapping, and geo-fencing markets in Sydney, Australia</p>", unsafe_allow_html=True)
+        st.markdown("<p>Site Selection Analysis is revolutionizing location intelligence, business analytics, mapping, and geo-fencing markets in Sydney, Australia</p>", unsafe_allow_html=True)
         
     with col2:
         st.header("Contact Info")
