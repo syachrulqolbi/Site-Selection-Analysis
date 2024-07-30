@@ -3,3 +3,4 @@ pandas==2.2.2
 panel==1.4.4
 pydeck==0.9.1
 streamlit==1.34.0
+geohashlite==0.3.2
